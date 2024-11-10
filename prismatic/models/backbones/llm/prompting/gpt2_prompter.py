@@ -30,9 +30,12 @@ class GPT2PromptBuilder(PromptBuilder):
             SYS_PROMPTS[self.model_family] if system_prompt is None else system_prompt
         )
 
+        # Begin and End of Sequence Tokens
+        self.bos, self.eos = "<|endoftext|>", "<|endoftext|>"
+
         # Get role-specific "wrap" functions
-        self.wrap_human = lambda msg: f"In: {msg}\nOut: "
-        self.wrap_gpt = lambda msg: f"{msg if msg != '' else ' '}"
+        self.wrap_human = lambda msg: f"Input: {msg}\nOutput: "
+        self.wrap_gpt = lambda msg: f"{msg if msg != '' else ' '}{self.eos}"
 
         # === `self.prompt` gets built up over multiple turns ===
         self.prompt, self.turn_count = "", 0
@@ -73,7 +76,8 @@ class GPT2PromptBuilder(PromptBuilder):
             human_message = self.wrap_human(message)
             prompt_copy += human_message
 
-        return prompt_copy.rstrip()
+        return prompt_copy.removeprefix(self.bos).rstrip()
 
     def get_prompt(self) -> str:
-        return self.prompt.rstrip()
+        # Remove prefix <bos> because it gets auto-inserted by tokenizer!
+        return self.prompt.removeprefix(self.bos).rstrip()
