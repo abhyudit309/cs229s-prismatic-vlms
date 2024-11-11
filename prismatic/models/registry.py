@@ -685,6 +685,58 @@ MODEL_REGISTRY = {
             "train_epochs": 1,
         }
     },
+    "dinosiglip+gpt2-small": {
+        "model_id": "dinosiglip+gpt2-small",
+        "names": ["Dino Siglip GPT2 Small"],
+        "description": {
+            "name": "Dino Siglip GPT2 Small",
+            "optimization_procedure": "single-stage",
+            "visual_representation": "DINOv2 ViT-L/14 + SigLIP ViT-SO/14 @ 384px",
+            "image_processing": "Naive Resize",
+            "language_model": "GPT2 Small",
+            "datasets": ["LLaVa v1.5 Instruct"],
+            "train_epochs": 1,
+        }
+    },
+    "dinosiglip+gpt2-medium": {
+        "model_id": "dinosiglip+gpt2-medium",
+        "names": ["Dino Siglip GPT2 Medium"],
+        "description": {
+            "name": "Dino Siglip GPT2 Medium",
+            "optimization_procedure": "single-stage",
+            "visual_representation": "DINOv2 ViT-L/14 + SigLIP ViT-SO/14 @ 384px",
+            "image_processing": "Naive Resize",
+            "language_model": "GPT2 Medium",
+            "datasets": ["LLaVa v1.5 Instruct"],
+            "train_epochs": 1,
+        }
+    },
+    "dinosiglip+gpt2-large": {
+        "model_id": "dinosiglip+gpt2-large",
+        "names": ["Dino Siglip GPT2 Large"],
+        "description": {
+            "name": "Dino Siglip GPT2 Large",
+            "optimization_procedure": "single-stage",
+            "visual_representation": "DINOv2 ViT-L/14 + SigLIP ViT-SO/14 @ 384px",
+            "image_processing": "Naive Resize",
+            "language_model": "GPT2 Large",
+            "datasets": ["LLaVa v1.5 Instruct"],
+            "train_epochs": 1,
+        }
+    },
+    "dinosiglip+gpt2-xl": {
+        "model_id": "dinosiglip+gpt2-xl",
+        "names": ["Dino Siglip GPT2 XL"],
+        "description": {
+            "name": "Dino Siglip GPT2 XL",
+            "optimization_procedure": "single-stage",
+            "visual_representation": "DINOv2 ViT-L/14 + SigLIP ViT-SO/14 @ 384px",
+            "image_processing": "Naive Resize",
+            "language_model": "GPT2 XL",
+            "datasets": ["LLaVa v1.5 Instruct"],
+            "train_epochs": 1,
+        }
+    },
 }
 
 # Build Global Registry (Model ID, Name) -> Metadata

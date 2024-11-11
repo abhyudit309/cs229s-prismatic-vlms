@@ -489,6 +489,63 @@ class Prism_7B_DINOSigLIP_224px(Exp_7B_One_Stage):
     finetune_epochs: int = 2
 
 
+#--------- Models for CS229S ---------#
+# DinoSigLip + GPT2 Small
+@dataclass
+class DINO_SigLIP_GPT2_Small(Prism_7B_DINOSigLIP):
+    model_id: str = "dinosiglip+gpt2-small"
+    vision_backbone_id: str = "dinosiglip-vit-so-384px"
+    image_resize_strategy: str = "resize-naive"
+    llm_backbone_id: str = "gpt2-small"
+    arch_specifier: str = "no-align+fused-gelu-mlp"
+    llm_max_length = 1024
+    finetune_epochs: int = 2
+    finetune_global_batch_size: int = 16
+    finetune_per_device_batch_size: int = 4
+
+
+# DinoSigLip + GPT2 Medium
+@dataclass
+class DINO_SigLIP_GPT2_Medium(Prism_7B_DINOSigLIP):
+    model_id: str = "dinosiglip+gpt2-medium"
+    vision_backbone_id: str = "dinosiglip-vit-so-384px"
+    image_resize_strategy: str = "resize-naive"
+    llm_backbone_id: str = "gpt2-medium"
+    arch_specifier: str = "no-align+fused-gelu-mlp"
+    llm_max_length = 1024
+    finetune_epochs: int = 2
+    finetune_global_batch_size: int = 16
+    finetune_per_device_batch_size: int = 4
+
+
+# DinoSigLip + GPT2 Large
+@dataclass
+class DINO_SigLIP_GPT2_Large(Prism_7B_DINOSigLIP):
+    model_id: str = "dinosiglip+gpt2-large"
+    vision_backbone_id: str = "dinosiglip-vit-so-384px"
+    image_resize_strategy: str = "resize-naive"
+    llm_backbone_id: str = "gpt2-large"
+    arch_specifier: str = "no-align+fused-gelu-mlp"
+    llm_max_length = 1024
+    finetune_epochs: int = 2
+    finetune_global_batch_size: int = 16
+    finetune_per_device_batch_size: int = 4
+
+
+# DinoSigLip + GPT2 XL
+@dataclass
+class DINO_SigLIP_GPT2_XL(Prism_7B_DINOSigLIP):
+    model_id: str = "dinosiglip+gpt2-xl"
+    vision_backbone_id: str = "dinosiglip-vit-so-384px"
+    image_resize_strategy: str = "resize-naive"
+    llm_backbone_id: str = "gpt2-xl"
+    arch_specifier: str = "no-align+fused-gelu-mlp"
+    llm_max_length = 1024
+    finetune_epochs: int = 2
+    finetune_global_batch_size: int = 16
+    finetune_per_device_batch_size: int = 4
+
+
 # === Define a Model Registry Enum for Reference & Validation ===
 @unique
 class ModelRegistry(Enum):
@@ -565,6 +622,12 @@ class ModelRegistry(Enum):
     # === Inference Optimized :: 224px Prism Models ===
     PRISM_DINOSIGLIP_224PX_CONTROLLED_7B = Prism_7B_DINOSigLIP_224px_Controlled
     PRISM_DINOSIGLIP_224PX_7B = Prism_7B_DINOSigLIP_224px
+
+    # === DinoSiglip + GPT2 LLM Backbone ===
+    DINOSIGLIP_GPT2_SMALL = DINO_SigLIP_GPT2_Small
+    DINOSIGLIP_GPT2_MEDIUM = DINO_SigLIP_GPT2_Medium
+    DINOSIGLIP_GPT2_LARGE = DINO_SigLIP_GPT2_Large
+    DINOSIGLIP_GPT2_XL = DINO_SigLIP_GPT2_XL
 
     @property
     def model_id(self) -> str:
