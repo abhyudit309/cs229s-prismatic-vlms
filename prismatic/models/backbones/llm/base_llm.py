@@ -169,6 +169,10 @@ class HFCausalLLMBackbone(LLMBackbone, ABC):
             #       this works well with base LLM generation.
             #   =>> Like Llama-2 Tokenizers -- we'll add a special PAD token for training purposes.
             "phi-2-3b",
+            "gpt2-small",
+            "gpt2-medium",
+            "gpt2-large",
+            "gpt2-xl",
         }
         if self.identifier in SPECIAL_CASES:
             return
